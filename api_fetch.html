@@ -2,14 +2,11 @@
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cedarville+Cursive&display=swap" rel="stylesheet">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Tienda Online</title>
     <link rel="stylesheet" href="./css/estilo.css">
-    <title>Formulario de contacto</title>
 </head>
 
 <body>
@@ -25,6 +22,12 @@
             <nav>
                 <ul>
                     <li><a href="./index.html"><i class="fa-solid fa-house"></i></a></li>
+                    <li>
+                        <a href="#" id="icono-carrito" class="carrito-icono">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                            <span id="contador-carrito" class="contador-carrito">0</span>
+                        </a>
+                    </li>
                     <li><a href="./productos.html">Productos</a></li>
                     <li><a href="./api_resenia.html">Reseñas</a></li>
                     <li><a href="contacto.html">Contacto</a></li>
@@ -33,19 +36,10 @@
             </nav>
         </div>
     </header>
-    <hr>
-    <main>
-        <form action="https://formspree.io/f/mvgkjgyb" method="POST">
-            <input type="texto" name="Nombre" id="nombre" placeholder="Ingrese su nombre:">
-            <br>
-            <input type="email" name="Email" id="email" placeholder="Ingrese su email:">
-            <br>
-            <textarea name="Consulta:" rows="5" cols="30" placeholder="Escriba aquí su consulta: "></textarea>
-            <br>
-            <input type="submit" name="Submit" id="submit" placeholder="Enviar:">
-            <input type="reset" name="Reset" id="reset" placeholder="Restablecer:">
-        </form>
-    </main>
+
+    <h1>Productos Disponibles</h1>
+    <div id="productos-container" class="productos-container"></div>
+
     <footer>
         <div class="iconos">
             <i class="fa-brands fa-instagram"></i>
@@ -58,5 +52,21 @@
         </div>
     </footer>
 
+    <!-- Modal del Carrito -->
+    <div id="modal-carrito" class="modal">
+        <div class="modal-contenido">
+            <span class="cerrar-modal">&times;</span>
+            <h2>Tu Carrito</h2>
+            <div id="lista-carrito"></div>
+            <div id="total-carrito">Total: $0.00</div>
+            <div class="botones-carrito">
+                <button id="vaciar-carrito">Vaciar Carrito</button>
+                <button id="pagar">Pagar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="./js/api_fetch.js"></script>
 </body>
+
 </html>

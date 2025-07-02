@@ -25,24 +25,22 @@
         <ul>
           <li> <a href="./index.html"><i class="fa-solid fa-house"></i></a></li>
           <li><a href="./productos.html">Productos</a></li>
-          <li>Servicios</li>
+          <li><a href="./api_resenia.html">Reseñas</a></li>
           <li><a href="contacto.html">Contacto</a></li>
           <li><a href="./ubicacion.html">Ubicación</a></li>
         </ul>
       </nav>
-    </div>
   </header>
 
-  <main>
+  <main class="productos_bootstrap">
     <div class="productos">
-
       <div class="card" style="width: 18rem;">
         <img src="./img/plato-flores.webp" class="card-img-top" alt="...">
         <div class="card-body">
           <h5 class="card-title">Floreado oscuro</h5>
           <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s
             content.</p>
-          <a href="#" class="btn btn-primary">Comprar</a>
+          <button class="btn btn-primary comprar" data-id="1" data-nombre="Plato con flores" data-precio="15.3500">Comprar</button>
         </div>
       </div>
 
@@ -78,6 +76,19 @@
       <br>
     </div>
   </main>
+  <br>
+    <div id="carrito">
+    <h2>Carrito de Compras</h2>
+    <p>Total: $<span id="total-carrito">0</span></p>
+    <ul id="lista-carrito"></ul>
+  </div>
+  <div class="botones_flexbox">
+    <button id="btnPagar">Pagar</button>
+    <button id="vaciar-carrito">Vaciar Carrito</button>
+  </div>
+  <br>
+  <br>
+
 
   <section>
     <a href="./productos.html">Volver productos</a>
@@ -94,6 +105,7 @@
           href="https://www.bazarcelta.com.ar/">Bazar Celta</a></small>
     </div>
   </footer>
+  <script src="./js/tienda.js"></script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
