@@ -141,7 +141,7 @@ main {
     padding-top: 0.5%;
 }
 
-.titulo {
+.titulo { 
     display: flex;
     flex-direction: column;
     justify-content: center;
