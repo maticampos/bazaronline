@@ -25,6 +25,12 @@
       <nav>
         <ul>
           <li><a href="./index.html"><i class="fa-solid fa-house"></i></a></li>
+                              <li>
+                        <a href="#" id="icono-carrito" class="carrito-icono">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                            <span id="contador-carrito" class="contador-carrito">0</span>
+                        </a>
+                    </li>
           <li><a href="./productos.html">Productos</a></li>
           <li><a href="./api_resenia.html">Reseñas</a></li>
           <li><a href="contacto.html">Contacto</a></li>
@@ -35,7 +41,7 @@
   </header>
 
     <h1>Productos Disponibles</h1>
-  <div id="productos-container"></div>
+    <div id="fakestore-container" class="fakestore-container"></div>
 
 
   <script src="./js/fakestore.js"></script>
@@ -50,6 +56,20 @@
           href="https://www.bazarcelta.com.ar/">Bazar Celta</a></small>
     </div>
   </footer>
+
+      <!-- Modal del Carrito -->
+    <div id="modal-carrito" class="modal">
+        <div class="modal-contenido">
+            <span class="cerrar-modal">&times;</span>
+            <h2>Tu Carrito</h2>
+            <div id="lista-carrito"></div>
+            <div id="total-carrito">Total: $0.00</div>
+            <div class="botones-carrito">
+                <button id="vaciar-carrito">Vaciar Carrito</button>
+                <button id="pagar">Pagar</button>
+            </div>
+        </div>
+    </div>
 
 </body>
 </html>

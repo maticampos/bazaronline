@@ -5,18 +5,22 @@ const notificacion = document.getElementById('notificacion');
 notificacion.textContent = mensaje;
 notificacion.className = 'notificacion'; // Reset classes
 
+
 if (tipo === 'error') {
     notificacion.classList.add('error');
 } else if (tipo === 'info') {
     notificacion.classList.add('info');
 }
 
+
 notificacion.style.display = 'block';
+
 
 setTimeout(() => {
     notificacion.style.display = 'none';
 }, 3000);
 }
+
 
 // Función para mostrar el modal del carrito
 function mostrarModalCarrito() {
@@ -25,20 +29,22 @@ const listaCarrito = document.getElementById("lista-carrito");
 const totalCarrito = document.getElementById("total-carrito");
 const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
+
 listaCarrito.innerHTML = "";
+
 
 if (carrito.length === 0) {
     listaCarrito.innerHTML = "<p>No hay productos en el carrito.</p>";
     totalCarrito.textContent = "Total: $0.00";
 } else {
     let totalPrecio = 0;
-    
+   
     carrito.forEach((id) => {
         const producto = productosDB.find(p => p.id === id);
         if (!producto) return;
-        
+       
         totalPrecio += producto.price;
-        
+       
         const item = document.createElement("div");
         item.className = "item-carrito";
         item.innerHTML = `
@@ -47,18 +53,23 @@ if (carrito.length === 0) {
         `;
         listaCarrito.appendChild(item);
     });
-    
+   
     totalCarrito.textContent = `Total: $${totalPrecio.toFixed(2)}`;
 }
 
+
 modal.style.display = "block";
 }
+
+
 
 
 // Función para cerrar el modal
 function cerrarModal() {
 document.getElementById("modal-carrito").style.display = "none";
 }
+
+
 
 
 // Función para manejar clicks fuera del modal
@@ -70,15 +81,18 @@ if (event.target === modal || event.target.classList.contains("cerrar-modal")) {
 }
 
 
+
+
 // Función para actualizar el contador del carrito
 function actualizarContadorCarrito() {
 const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 const contador = document.getElementById("contador-carrito");
 
+
 if (contador) {
     // Actualizar el número
     contador.textContent = carrito.length > 9 ? "9+" : carrito.length;
-    
+   
     // Mostrar u ocultar según si hay productos
     if (carrito.length > 0) {
         contador.style.display = "flex";
@@ -89,6 +103,8 @@ if (contador) {
 }
 
 
+
+
 // Función para agregar productos al carrito
 function agregarAlCarrito(idProducto) {
 let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
@@ -96,11 +112,13 @@ carrito.push(idProducto);
 localStorage.setItem("carrito", JSON.stringify(carrito));
 actualizarContadorCarrito();
 
+
 const producto = productosDB.find(p => p.id === idProducto);
 if (producto) {
     mostrarNotificacion(`${producto.title} añadido al carrito`);
 }
 }
+
 
 // Función para vaciar el carrito
 function vaciarCarrito() {
@@ -110,18 +128,22 @@ cerrarModal();
 mostrarNotificacion("Carrito vaciado");
 }
 
+
 // Función para preparar y redirigir a la página de pago
 function pagar() {
 const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
 
 if (carrito.length === 0) {
     mostrarNotificacion("El carrito está vacío", "error");
     return;
 }
 
+
 // Preparar datos para la página de compra
 const productosCompra = [];
 let totalCompra = 0;
+
 
 carrito.forEach(id => {
     const producto = productosDB.find(p => p.id === id);
@@ -134,18 +156,24 @@ carrito.forEach(id => {
     }
 });
 
+
 // Guardar en sessionStorage
 sessionStorage.setItem('productos', JSON.stringify(productosCompra));
 sessionStorage.setItem('total', totalCompra.toFixed(2));
+
 
 // Redirigir a la página de compra
 window.location.href = 'compra.html';
 }
 
 
+
+
 // Inicialización cuando el DOM está listo
 document.addEventListener("DOMContentLoaded", () => {
 const contenedor = document.getElementById("fakestore-container");
+
+
 
 
 fetch("https://fakestoreapi.com/products")
@@ -158,9 +186,13 @@ fetch("https://fakestoreapi.com/products")
         contenedor.innerHTML = "";
 
 
+
+
         data.forEach((producto) => {
             const item = document.createElement("div");
             item.className = "item_flex";
+
+
 
 
             item.innerHTML = `
@@ -176,20 +208,24 @@ fetch("https://fakestoreapi.com/products")
                 </div>
             `;
 
+
             contenedor.appendChild(item);
         });
 
+
         actualizarContadorCarrito();
     })
-    
+   
     .catch((error) => {
         console.error("Error al obtener productos:", error);
         contenedor.innerHTML = "<p>Hubo un problema al cargar los productos.</p>";
     });
-    
+   
 // Event listeners
 document.getElementById("icono-carrito")?.addEventListener("click", mostrarModalCarrito);
 document.getElementById("vaciar-carrito")?.addEventListener("click", vaciarCarrito);
 document.getElementById("pagar")?.addEventListener("click", pagar);
 window.addEventListener("click", manejarClicksModal);
 });
+
+
